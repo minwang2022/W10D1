@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log('this is coming from index.js');\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const $l = function(arg) {\n  if (typeof arg === 'string') {\n    let nodeList = document.querySelectorAll(arg);\n    return Array.from(nodeList);\n  }\n} //function w/ the name $l --> $l(arg)\n\n// console.log($l);\nwindow.$l = $l;\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
