@@ -1,38 +1,40 @@
 
 class DOMNodeCollection {
-    constructor(array) {
-        this.array = array;
+    constructor(nodes) {
+        this.nodes = nodes;
     }
 
     html(str) {
         if (!str) {
-            return this.array[0].innerHTML;      
+            return this.nodes[0].innerHTML;      
         } else {
-            this.array.forEach((ele) => {
-                ele.innerHTML = str;
+            this.nodes.forEach((node) => {
+                node.innerHTML = str;
             })
         }     
     }
 
     empty() {
-        this.array.forEach(el => {
-            el.innerHTML = "";
+        this.nodes.forEach(node => {
+            node.innerHTML = "";
         })
     }
 
-    append(arg) {       
+    append(arg) {   
+        // debugger    
         if (typeof arg === "string") {
-            this.array.forEach((ele) => {
+            this.nodes.forEach((ele) => {
                 ele.innerHTML += arg;
             })
         } else if (arg instanceof HTMLElement) {
-            this.array.forEach((ele) => {
-                ele.innerHTML += $l(arg);
+            this.nodes.forEach((ele) => {
+                ele.appendChild(arg.cloneNode(true));
             })
         } else if (arg instanceof DOMNodeCollection){
-            this.array.forEach((ele) => {
-                arg.forEach(node => {
-                    ele.appendChild(node);
+            // debugger
+            this.nodes.forEach((parentNode) => {
+                arg.nodes.forEach(childNode => {
+                    parentNode.appendChild(childNode.cloneNode(true));
                 })
             })
         }
@@ -42,5 +44,6 @@ class DOMNodeCollection {
 
 }
 
+window.DOMNodeCollection = DOMNodeCollection;
 
 module.exports = DOMNodeCollection;
