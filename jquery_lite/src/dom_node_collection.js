@@ -4,9 +4,17 @@ class DOMNodeCollection {
         this.array = array;
     }
 
-    html() {
-        
+    html(str) {
+        if (!str) {
+            return this.array[0].innerHTML;      
+        } else {
+            this.array.forEach((ele) => {
+                ele.innerHTML = str; //undefined
+            })
+        }     
     }
+
+    
 }
 
 
